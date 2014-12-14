@@ -159,3 +159,113 @@ library = Library.new(GAMES)
 
 library.each(&my_code)
 ```
+
+##### Capturing blocks
+
+Before
+
+```ruby
+class Library
+  attr_accessor :games
+
+  def initialize(games)
+    @games = games
+  end
+
+  def each
+    games.each do |game|
+      yield game
+    end
+  end
+end
+```
+
+After
+
+```ruby
+class Library
+  attr_accessor :games
+
+  def initialize(games)
+    @games = games
+  end
+
+  def each(&block)
+    games.each do |game|
+      block.call(game)
+    end
+  end
+end
+```
+
+
+##### Passing blocks
+
+Before
+
+```ruby
+class Library
+  attr_accessor :games
+
+  def initialize(games)
+    @games = games
+  end
+
+  def each(&block)
+    games.each do |game|
+      block.call(game)
+    end
+  end
+end
+```
+
+After
+
+```ruby
+class Library
+  attr_accessor :games
+
+  def initialize(games)
+    @games = games
+  end
+
+  def each(&block)
+    games.each(&block)
+  end
+end
+```
+
+##### Using & in a map function ==> symbol to proc
+
+Before
+
+```ruby
+class Library
+  attr_accessor :games
+
+  def initialize(games)
+    @games = games
+  end
+
+  def names
+    games.map { |game| game.name }
+  end
+end
+```
+
+After
+
+```ruby
+class Library
+  attr_accessor :games
+
+  def initialize(games)
+    @games = games
+  end
+
+  def names
+    games.map(&:name)
+  end
+end
+```
+
