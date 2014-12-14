@@ -137,3 +137,25 @@ class Library
   end
 end
 ```
+
+##### Block to a Proc and passing it to a function which receives a block
+
+Before
+
+```ruby
+library = Library.new(GAMES)
+library.each { |game| puts "#{game.name} (#{game.system}) - #{game.year}" }
+```
+
+After
+
+```ruby
+my_code = Proc.new {
+  |game| puts "#{game.name} (#{game.system}) - #{game.year}" 
+  
+  }
+
+library = Library.new(GAMES)
+
+library.each(&my_code)
+```
