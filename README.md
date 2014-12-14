@@ -269,3 +269,18 @@ class Library
 end
 ```
 
+##### Veryfing if a block is given
+
+```ruby
+def list
+  games.each do |game|
+    if block_given?
+      puts yield game
+    else
+      puts game.name
+    end
+  end
+end
+```
+
+#### Dynamic Classes and Methods
