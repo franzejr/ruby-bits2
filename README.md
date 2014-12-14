@@ -391,3 +391,16 @@ timeline.send("contents")
 ```
 Send can also runs private or protected methods. To avoid it, we can use public_send. It prevents running private or protected methods.
 
+##### The method method
+
+Methods are also objects.So, to get this object, we can use the method method.
+
+```ruby
+tweets = ["First Tweet","Second Tweet"]
+timeline = Timeline.new(tweets)
+
+#Getting the method
+content_method = timeline.method(:contents)
+#Invoking
+content_method.call
+```
