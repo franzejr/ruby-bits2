@@ -93,3 +93,25 @@ tweets.each(&printer)
 ```
 '&' turns proc into block
 ```
+
+##### Changing Proc into lambda
+
+Proc
+
+```ruby
+library = Library.new(GAMES)
+print_details = Proc.new do |game|
+  puts "#{game.name} (#{game.system}) - #{game.year}"
+end
+library.exec_game('Contra', print_details)
+```
+
+Lambda
+
+```ruby
+library = Library.new(GAMES)
+print_details = lambda { |game|
+  puts "#{game.name} (#{game.system}) - #{game.year}"
+  }
+library.exec_game('Contra', print_details)
+```
