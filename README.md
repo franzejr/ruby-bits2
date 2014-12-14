@@ -32,3 +32,7 @@ my_proc.call  # => test
 my_proc = lambda { puts "test" }
 my_proc.call  # => test
 ```
+
+###### Block to Lambda
+
+
