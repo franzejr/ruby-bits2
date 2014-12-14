@@ -319,3 +319,35 @@ Tweet = Struct.new(:user, :status) do
   end
 end
 ```
+
+##### Alias method
+
+```ruby
+class Timeline
+  def initialize(tweets = [])
+    @tweets = tweets
+  end
+  
+  def tweets
+    @tweets
+  end
+  
+  def contents
+    @tweets
+  end 
+end
+```
+
+We've two methods with the same implementation. So, we can use the alias_method.
+
+```ruby
+class Timeline
+  def initialize(tweets = [])
+    @tweets = tweets
+  end
+  def tweets
+    @tweets
+end
+  alias_method :contents, :tweets
+end
+```
