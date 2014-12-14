@@ -351,3 +351,43 @@ end
   alias_method :contents, :tweets
 end
 ```
+
+##### Define Method
+
+We can also define method dynamically.
+
+
+###### The send method
+
+We've the following ruby class:
+
+```ruby
+class Timeline
+  
+  def initialize(tweets)
+    @tweets = tweets
+  end
+  
+  def contents
+    @tweets
+  end 
+private
+  def direct_messages
+  end 
+end
+```
+We can use the send method to run methods:
+
+```ruby
+tweets = ["First Tweet","Second Tweet"]
+timeline = Timeline.new(tweets)
+
+#Normal way
+timeline.contents
+
+#Using send method
+timeline.send(:contents)
+timeline.send("contents")
+```
+Send can also runs private or protected methods. To avoid it, we can use public_send. It prevents running private or protected methods.
+
