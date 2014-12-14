@@ -284,3 +284,38 @@ end
 ```
 
 #### Dynamic Classes and Methods
+
+##### Struct
+
+```ruby
+class Tweet
+  attr_accessor :user, :status
+  def initialize(user, status)
+    @user, @status = user, status
+  end 
+end
+```
+
+Using Struct to do the same thing
+
+```ruby
+Tweet = Struct.new(:user, :status)
+```
+
+We'll get the same result:
+
+```ruby
+tweet = Tweet.new('Gregg', 'compiling!')
+tweet.user # => Gregg
+tweet.status # => compiling!
+```
+
+##### Struct extra methods
+
+```ruby
+Tweet = Struct.new(:user, :status) do 
+  def to_s
+    "#{user}: #{status}"
+  end
+end
+```
