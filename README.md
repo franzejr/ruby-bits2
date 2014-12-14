@@ -21,10 +21,14 @@ Two ways:
 - Proc
 - Lambda
 
-Proc.new
+###### Proc.new
+```ruby
 my_proc = Proc.new  { puts "test" }
 my_proc.call  # => test
+```
 
-Lambda
+###### Lambda
+```ruby
 my_proc = lambda { puts "test" }
 my_proc.call  # => test
+```
