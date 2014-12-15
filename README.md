@@ -404,3 +404,17 @@ content_method = timeline.method(:contents)
 #Invoking
 content_method.call
 ```
+
+#### Understanding and using self
+
+
+###### Class Eval
+Sets self to the given class and executes a block
+
+```ruby
+Game.class_eval do
+  def self.find_by_owner
+  end
+end
+```
+
