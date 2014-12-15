@@ -396,7 +396,37 @@ end
 
 ```
 
+Before
+```ruby
+class Library
+  attr_accessor :games
 
+  def each(&block)
+    games.each(&block)
+  end
+
+  def map(&block)
+    games.map(&block)
+  end
+
+  def select(&block)
+    games.select(&block)
+  end
+end
+```
+
+After
+```ruby
+class Library
+  attr_accessor :games
+ 
+  [:each, :map, :select].each do |iterator|
+    define_method iterator do |&block|
+      games.send iterator, &block
+    end
+  end
+end
+```
 
 ###### The send method
 
