@@ -356,6 +356,47 @@ end
 
 We can also define method dynamically.
 
+Before
+
+```ruby
+class Game
+  SYSTEMS = ['SNES', 'PS1', 'Genesis']
+
+  attr_accessor :name, :year, :system
+
+  def runs_on_snes?
+    self.system == 'SNES'
+  end
+
+  def runs_on_ps1?
+    self.system == 'PS1'
+  end
+
+  def runs_on_genesis?
+    self.system == 'Genesis'
+  end
+end
+```
+
+After
+
+```ruby
+class Game
+  SYSTEMS = ['SNES', 'PS1', 'Genesis']
+
+  attr_accessor :name, :year, :system
+  
+  SYSTEMS.each do |var|
+    define_method "runs_on_#{var.downcase}?" do
+      system == var
+    end
+  end
+
+end
+
+```
+
+
 
 ###### The send method
 
