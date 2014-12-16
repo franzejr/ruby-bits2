@@ -489,3 +489,52 @@ Game.class_eval do
 end
 ```
 
+Using class_eval and defining a method in execution time
+
+```ruby
+class LibraryManager
+  def self.make_available(klass, user)
+    klass.class_eval do
+      define_method "lend_to_#{user}" do
+        
+      end
+    end
+  end
+end
+```
+
+##### Instance_eval
+
+Sets self to the given instance and executes a block
+
+```ruby
+tweet = Tweet.new
+tweet.instance_eval do
+  self.status = "Changing the tweet's status"
+end
+```
+Inside the block self is the Tweet instance
+
+```ruby
+contra_game = Game.new('Contra')
+contra_game.instance_eval do
+  self.owner = 'Alice'
+end
+```
+
+```ruby
+class Game
+  def initialize(&block)
+    instance_eval(&block) if block_given?
+  end
+
+  def owner(name=nil)
+    if name
+      @owner = name
+    else
+      @owner
+    end
+  end
+end
+```
+
