@@ -563,3 +563,22 @@ class Library
   end
 end
 ```
+
+##### Delegating for other class if contains a substring in the method name
+
+```ruby
+class Library
+  def initialize(console)
+    @manager = console
+  end
+
+  def method_missing(name, *args)
+    match = name.to_s.include?("atari")
+    if match
+    	@manager.send(name, *args)
+    else
+     super
+    end
+  end
+end
+```
