@@ -615,3 +615,4 @@ end
 
 ##### Domain Specific Language
 
+A DSL is a language that has terminology and constructs designed for a specific domain. If you're familiar with rails, ActiveRecord is a good example of a DSL.
